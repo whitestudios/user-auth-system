@@ -1,20 +1,18 @@
 package handler
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/whitestudios/user-auth-system/internal/auth"
 )
 
 func initializeRoutes(router *gin.Engine) {
+	auth.InitializeHandlers()
+
 	basePath := "/api"
 
 	api := router.Group(basePath)
 	{
-		api.GET("/hello", func(c *gin.Context) {
-			c.JSON(http.StatusOK, gin.H{"msg": "Hello world"})
-		})
+		api.GET("/allUsers", auth.TestListAllUsers)
 	}
 
 	user := router.Group(basePath + "/user")
