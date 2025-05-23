@@ -1,4 +1,4 @@
-# Binários compilados
+# Compiled bin
 /bin/
 /*.exe
 /*.exe~
@@ -7,21 +7,21 @@
 /*.dylib
 *.test
 
-# Executável local
+# local executable
 auth-service
 
-# Pastas comuns de build
+# build dirs
 build/
 dist/
 out/
 
-# IDEs e editores
+# IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Arquivos de logs
+# Log files
 *.log
 
 # Air (hot reload)
@@ -29,17 +29,18 @@ tmp/
 .air
 .air.toml
 
-# Arquivos de ambiente (NUNCA commite)
+# environments files (NEVER commite)
 .env
 .env.*
 
-# Dumps ou dados locais
+# Dumps or local data
 *.sqlite
 *.db
 *.dump
 *.bak
+./db
 
-# Teste com coverage
+# Tests with coverage
 coverage.*
 *.coverprofile
 *.out
@@ -48,6 +49,6 @@ coverage.*
 docker-compose.override.yml
 .docker/
 
-# Mac e Linux
+# Mac and Linux
 .DS_Store
 Thumbs.db
