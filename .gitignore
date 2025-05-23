@@ -1,0 +1,53 @@
+# Binários compilados
+/bin/
+/*.exe
+/*.exe~
+/*.dll
+/*.so
+/*.dylib
+*.test
+
+# Executável local
+auth-service
+
+# Pastas comuns de build
+build/
+dist/
+out/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos de logs
+*.log
+
+# Air (hot reload)
+tmp/
+.air
+.air.toml
+
+# Arquivos de ambiente (NUNCA commite)
+.env
+.env.*
+
+# Dumps ou dados locais
+*.sqlite
+*.db
+*.dump
+*.bak
+
+# Teste com coverage
+coverage.*
+*.coverprofile
+*.out
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Mac e Linux
+.DS_Store
+Thumbs.db
