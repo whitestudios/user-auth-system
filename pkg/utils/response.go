@@ -20,3 +20,10 @@ func SendError(c *gin.Context, op string, code int) {
 		"errorCode": code,
 	})
 }
+
+func AbortError(c *gin.Context, op string, code int) {
+	c.AbortWithStatusJSON(code, gin.H{
+		"message":   op,
+		"errorCode": code,
+	})
+}
