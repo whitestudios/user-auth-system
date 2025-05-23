@@ -38,7 +38,7 @@ tmp/
 *.db
 *.dump
 *.bak
-./db
+db/
 
 # Tests with coverage
 coverage.*

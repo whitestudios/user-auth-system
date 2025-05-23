@@ -11,7 +11,7 @@ import (
 func InitializeSqlite() (*gorm.DB, error) {
 	logger := GetLogger("sqlite")
 	dbDir := "./db"
-	dbPath := "./db/users"
+	dbPath := "./db/users.db"
 
 	_, err := os.Stat(dbPath)
 
