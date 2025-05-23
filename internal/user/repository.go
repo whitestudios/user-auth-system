@@ -1,6 +1,8 @@
 package user
 
 import (
+	"errors"
+
 	"gorm.io/gorm"
 )
 
@@ -12,6 +14,16 @@ func NewUserRepository(db *gorm.DB) *UserRepository {
 	return &UserRepository{
 		db: db,
 	}
+}
+
+func (rep *UserRepository) FindByEmail(u *User, email string) error {
+	if err := rep.db.Where("email = ?", email).First(u).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return errors.New("user not found")
+		}
+		return err
+	}
+	return nil
 }
 
 func (rep *UserRepository) FindById(id uint) (*User, error) {

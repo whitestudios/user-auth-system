@@ -5,31 +5,31 @@ import (
 	"regexp"
 )
 
-type UserCreateDto struct {
+type UserReqDto struct {
 	Email    string
 	Password string
 }
 
-func (u UserCreateDto) EmailIsValid() bool {
+func (u UserReqDto) EmailIsValid() bool {
 	emailRegex := `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
 	re := regexp.MustCompile(emailRegex)
 	return re.MatchString(u.Email)
 }
 
-func (u UserCreateDto) PasswordIsValid() error {
+func (u UserReqDto) PasswordIsValid() bool {
 	length := len(u.Password)
 
 	switch {
 	case length < 8:
-		return fmt.Errorf("password too short: need at least 8 characters, got %d", length)
+		return false
 	case length > 50:
-		return fmt.Errorf("password too long: maximum 50 characters allowed, got %d", length)
+		return false
 	default:
-		return nil
+		return true
 	}
 }
 
-func (u UserCreateDto) Validate() error {
+func (u UserReqDto) Validate() error {
 	if !u.EmailIsValid() {
 		return fmt.Errorf("Invalid email")
 	}
