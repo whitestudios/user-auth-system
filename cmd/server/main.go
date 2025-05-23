@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"github.com/whitestudios/user-auth-system/config"
+	"github.com/whitestudios/user-auth-system/internal/handler"
+)
 
 func main() {
-	fmt.Println("Hello go")
+	config.Init()
+	handler.Init()
 }
