@@ -46,12 +46,14 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
-	if user.Password != req.Password {
+	if !utils.CheckPasswordHash(req.Password, user.Password) {
 		utils.SendError(c, "Invalid login, email or password is wrong", http.StatusBadRequest)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"msg": "Correct login!",
+		"msg":           "Correct login!",
+		"token":         "jwtToken",
+		"refresh-token": "refresh-token",
 	})
 }
 
@@ -79,10 +81,17 @@ func RegisterHandler(c *gin.Context) {
 		return
 	}
 
+	hashPassword, err := utils.HashPassword(req.Password)
+
+	if err != nil {
+		utils.SendError(c, "Error hashing password", http.StatusInternalServerError)
+		return
+	}
+
 	// insert on db
 	user := user.User{
 		Email:    req.Email,
-		Password: req.Password,
+		Password: hashPassword,
 	}
 
 	if err := userRepository.Create(&user); err != nil {
